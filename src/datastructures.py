@@ -29,6 +29,8 @@ class FamilyStructure:
     def add_member(self, member):
         # You have to implement this method
         # Append the member to the list of _members
+        member["id"] = self._generate_id()
+        member["last_name"] = self.last_name
         self._members.append(member)
         pass
 

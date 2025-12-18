@@ -64,7 +64,7 @@ def member():
         print(response_body)
         if response_body['results']:
             return response_body, 200
-        response_body['message'] = 'Error en el envio de datos verificar por favor'
+        response_body['message'] = 'Error en el envio de datos verificar por favor aaa'
         return response_body, 400
 
 @app.route('/members/<int:member_id>', methods=['DELETE'])

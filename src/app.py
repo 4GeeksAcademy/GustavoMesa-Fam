@@ -30,7 +30,7 @@ def sitemap():
 
 
 @app.route('/members', methods=['GET'])
-def members():
+def members():     
     # This is how you can use the Family datastructure by calling its methods
     members = jackson_family.get_all_members()
     response_body = {"hello": "world",
@@ -48,8 +48,8 @@ def menber(member_id):
             return response_body, 200
         response_body['message'] = 'Error en la petición, solicitud o ID no encotrado'
         return response_body, 400
-    
-@app.route('/member', methods=['POST'])
+
+@app.route('/members', methods=['POST'])
 def member():
     response_body = {}
     if request.method == 'POST':
@@ -60,12 +60,14 @@ def member():
         new_data = { 'first_name': first_name,
                      'age': age,
                      'lucky_number': numbers}
-        response_body['results'] = new_data
+        response_body['results'] = jackson_family.add_member(new_data)
         print(response_body)
         if response_body['results']:
             return response_body, 200
-        response_body['message'] = 'Error en el envio de datos verificar por favor aaa'
+        print(response_body)
+        response_body['message'] = 'Error en el envio de datos verificar por favor'
         return response_body, 400
+    
 
 @app.route('/members/<int:member_id>', methods=['DELETE'])
 def menber_delete(member_id):
@@ -78,10 +80,6 @@ def menber_delete(member_id):
             return response_body, 200
         response_body['message'] = 'Error en la petición, solicitud o ID no encotrado'
         return response_body, 400
-
-
-
-
 
 # This only runs if `$ python src/app.py` is executed
 if __name__ == '__main__':

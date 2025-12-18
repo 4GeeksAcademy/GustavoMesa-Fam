@@ -36,6 +36,7 @@ class FamilyStructure:
         member['id'] = self._generate_id()
         member['last_name'] = self.last_name
         self._members.append(member)
+        return member
 
     def delete_member(self, id):
         for member in self._members:
